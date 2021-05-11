@@ -1,11 +1,20 @@
 import React from 'react'
 import classes from './CounterButton.module.scss'
 
-const CounterButton: React.FC = () => {
+type CounterButtonPropsType = {
+    title: string
+    disabled?: boolean
+    onClick: () => void
+}
+
+const CounterButton: React.FC<CounterButtonPropsType> = ({title, onClick, disabled}) => {
 
     return (
-        <button className={classes.btn}>
-            {}
+        <button className={classes.btn}
+                onClick={onClick}
+                disabled={disabled}
+        >
+            {title}
         </button>
     )
 }

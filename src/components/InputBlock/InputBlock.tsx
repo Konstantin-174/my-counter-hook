@@ -4,6 +4,10 @@ import CounterButton from '../Counter/CounterButton/CounterButton';
 
 export const InputBlock: React.FC = () => {
 
+    const setBtn = () => {
+        alert("WTF!? Where is my value?")
+    }
+
     return (
         <section className={local.inputBlockWrap}>
             <div className={local.inputArea}>
@@ -21,7 +25,7 @@ export const InputBlock: React.FC = () => {
                 </div>
             </div>
             <div className={local.btn}>
-                <CounterButton />
+                <CounterButton title="set" onClick={setBtn}/>
             </div>
         </section>
     )
