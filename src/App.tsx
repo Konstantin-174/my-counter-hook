@@ -1,11 +1,16 @@
 import React from 'react';
-import './App.scss';
+import './App.css';
+import Counter from './components/Counter/Counter';
+import {InputBlock} from './components/InputBlock/InputBlock';
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <InputBlock />
+            <Counter />
+        </div>
+    );
 }
 
 export default App;

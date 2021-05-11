@@ -1,0 +1,14 @@
+@import "src/variables/variables";
+
+.btn {
+  @include Text_Decoration;
+  transition: .3s;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  flex-basis: 50%;
+
+  &:disabled {
+    @include Hover;
+  }
+}

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+// === BORDERS ===
+@mixin Border_Style {
+  padding: 20px;
+  border: 3px solid #CC00FF;
+  border-radius: 10px;
+  //box-shadow: 3px 2px 3px #333333;
+}
+
+@mixin Size {
+  width: 370px;
+  height: 250px;
+}
+
+// === / BORDERS ===
+
+// === TEXT DECORATION ===
+$fw-m: 500;
+$fw-r: 400;
+
+@mixin Roboto_Mono {
+  font-family: 'Roboto Mono', monospace;
+}
+
+@mixin Text_Decoration {
+  color: #33CCCC;
+  font-weight: $fw-m;
+  text-transform: uppercase;
+}
+// === / TEXT DECORATION ===
+
+// === BTN STYLES ===
+@mixin Hover {
+  background-color: darken(#666666, 2%);
+  color: darken(#33CCCC, 10%);
+  border-color: darken(#CC00FF, 10%);
+}
+
+// === / BTN STYLES ===

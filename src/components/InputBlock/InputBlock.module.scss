@@ -1,0 +1,101 @@
+@import "src/variables/variables";
+
+.inputBlockWrap {
+  @include Border_Style;
+  @include Size;
+
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+
+  text-transform: uppercase;
+
+
+  .inputArea {
+    @include Border_Style;
+
+    margin-bottom: 20px;
+
+    .inputItem {
+      display: flex;
+      margin-bottom: 5px;
+      align-items: center;
+
+      .inputTitle {
+        @include Text_Decoration;
+
+        flex-basis: 60%;
+        margin-right: 20px;
+      }
+
+      .input {
+        display: flex;
+        flex-basis: 40%;
+
+        .dec,
+        .inc  {
+          padding-top: 3px;
+          justify-content: center;
+          text-align: center;
+          width: 25px;
+          height: 30px;
+          cursor: pointer;
+          background-color: lighten(#666666, 10%);
+          color: #33CCCC;
+          transition: .3s;
+
+          &:hover {
+            background-color: lighten(#666666, 5%);
+          }
+        }
+
+        :first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+
+        :last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+
+        input {
+          text-align: center;
+          height: 30px;
+          width: 90px;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          background-color: lighten(#666666, 10%);
+          color: #33CCCC;
+
+          &:focus {
+            border: 1px solid #33CCCC;
+          }
+
+          &::placeholder {
+            color: #666666;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+
+  .btn {
+    transition: .3s;
+    background-color: transparent;
+    flex-basis: 40%;
+    overflow: hidden;
+
+    button {
+      @include Border_Style;
+      height: 100%;
+
+      &:hover {
+        @include Hover;
+      }
+    }
+  }
+}
+

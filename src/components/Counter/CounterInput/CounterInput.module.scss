@@ -1,0 +1,14 @@
+@import "src/variables/variables";
+
+.input {
+  @include Border_Style;
+
+  flex-basis: 60%;
+  margin-bottom: 20px;
+  color: #33CCCC;
+  font-size: 50px;
+}
+
+.error {
+  color: #FF0033;
+}
