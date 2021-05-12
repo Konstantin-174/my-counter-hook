@@ -1,30 +1,49 @@
 import local from './InputBlock.module.scss';
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import CounterButton from '../Counter/CounterButton/CounterButton';
 
 export const InputBlock: React.FC = () => {
 
-    let [maxValue, setMaxValue] = useState<number>(0)
-    let [startValue, setStartValue] = useState<number>(0)
+    const maxValueState = {maxValue: 0}
+    type MaxValueStateType = typeof maxValueState
+
+    const startValueState = {startValue: 0}
+    type StartValueStateType = typeof startValueState
+
+    let [maxValue, setMaxValue] = useState<MaxValueStateType>(maxValueState)
+    let [startValue, setStartValue] = useState<StartValueStateType>(startValueState)
+
 
     const decMaxValue = () => {
-        setMaxValue(maxValue - 1)
+        let newMaxValue = maxValue.maxValue - 1
+        setMaxValue({...maxValueState, maxValue: newMaxValue})
     }
 
     const incMaxValue = () => {
-        setMaxValue(maxValue + 1)
+        let newMaxValue = maxValue.maxValue + 1
+        setMaxValue({...maxValueState, maxValue: newMaxValue})
     }
 
     const decStartValue = () => {
-        setStartValue(startValue - 1)
+        let newStartValue = startValue.startValue - 1
+        setStartValue({...startValueState, startValue: newStartValue})
     }
 
     const incStartValue = () => {
-        setStartValue(startValue + 1)
+        let newStartValue = startValue.startValue + 1
+        setStartValue({...startValueState, startValue: newStartValue})
+    }
+
+    const newMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+
+    }
+
+    const newStartValue = (e: ChangeEvent<HTMLInputElement>) => {
+
     }
 
     const setBtn = () => {
-        alert('WTF!? Where is my value?')
+        alert("WTF!?")
     }
 
     return (
@@ -34,8 +53,8 @@ export const InputBlock: React.FC = () => {
                     <div className={local.inputTitle}>
                         max value
                     </div>
-                    <Input value={maxValue}
-                           decValue={decMaxValue}
+                    <Input value={maxValue.maxValue}
+                           decValue={decMaxValue} onChangeValue={newMaxValue}
                            incValue={incMaxValue}
                     />
                 </div>
@@ -43,8 +62,8 @@ export const InputBlock: React.FC = () => {
                     <div className={local.inputTitle}>
                         start value
                     </div>
-                    <Input value={startValue}
-                           decValue={decStartValue}
+                    <Input value={startValue.startValue}
+                           decValue={decStartValue} onChangeValue={newStartValue}
                            incValue={incStartValue}
                     />
                 </div>
@@ -60,10 +79,10 @@ type InputPropsType = {
     value: number
     incValue: () => void
     decValue: () => void
+    onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<InputPropsType> = ({value, incValue, decValue}) => {
-
+const Input: React.FC<InputPropsType> = ({value, incValue, decValue, onChangeValue}) => {
 
     return (
         <div className={local.input}>
@@ -73,7 +92,8 @@ const Input: React.FC<InputPropsType> = ({value, incValue, decValue}) => {
             >
                 -
             </div>
-            <input type="text" value={value}
+            <input value={value}
+                   onChange={onChangeValue}
             />
             <div className={local.inc}
                  tabIndex={0}
