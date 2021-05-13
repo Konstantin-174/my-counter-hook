@@ -1,50 +1,26 @@
 import local from './InputBlock.module.scss';
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import CounterButton from '../Counter/CounterButton/CounterButton';
 
-export const InputBlock: React.FC = () => {
+type InputBlockPropsType = {
+    maxValue: number
+    decMaxValue: () => void
+    incMaxValue: () => void
+    startValue: number
+    decStartValue: () => void
+    incStartValue: () => void
+    setDisplayValue: (value: number) => void
+}
 
-    const maxValueState = {maxValue: 0}
-    type MaxValueStateType = typeof maxValueState
+export const InputBlock: React.FC<InputBlockPropsType> = ({maxValue,
+                                                              decMaxValue,
+                                                              incMaxValue,
+                                                              startValue,
+                                                              decStartValue,
+                                                              incStartValue,
+                                                              setDisplayValue}) => {
 
-    const startValueState = {startValue: 0}
-    type StartValueStateType = typeof startValueState
-
-    let [maxValue, setMaxValue] = useState<MaxValueStateType>(maxValueState)
-    let [startValue, setStartValue] = useState<StartValueStateType>(startValueState)
-
-
-    const decMaxValue = () => {
-        let newMaxValue = maxValue.maxValue - 1
-        setMaxValue({...maxValueState, maxValue: newMaxValue})
-    }
-
-    const incMaxValue = () => {
-        let newMaxValue = maxValue.maxValue + 1
-        setMaxValue({...maxValueState, maxValue: newMaxValue})
-    }
-
-    const decStartValue = () => {
-        let newStartValue = startValue.startValue - 1
-        setStartValue({...startValueState, startValue: newStartValue})
-    }
-
-    const incStartValue = () => {
-        let newStartValue = startValue.startValue + 1
-        setStartValue({...startValueState, startValue: newStartValue})
-    }
-
-    const newMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-
-    }
-
-    const newStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-
-    }
-
-    const setBtn = () => {
-        alert("WTF!?")
-    }
+    const setBtn = () => setDisplayValue(startValue)
 
     return (
         <section className={local.inputBlockWrap}>
@@ -53,8 +29,8 @@ export const InputBlock: React.FC = () => {
                     <div className={local.inputTitle}>
                         max value
                     </div>
-                    <Input value={maxValue.maxValue}
-                           decValue={decMaxValue} onChangeValue={newMaxValue}
+                    <Input value={maxValue}
+                           decValue={decMaxValue}
                            incValue={incMaxValue}
                     />
                 </div>
@@ -62,14 +38,16 @@ export const InputBlock: React.FC = () => {
                     <div className={local.inputTitle}>
                         start value
                     </div>
-                    <Input value={startValue.startValue}
-                           decValue={decStartValue} onChangeValue={newStartValue}
+                    <Input value={startValue}
+                           decValue={decStartValue}
                            incValue={incStartValue}
                     />
                 </div>
             </div>
             <div className={local.btn}>
-                <CounterButton title="set" onClick={setBtn}/>
+                <CounterButton title="set"
+                               onClick={setBtn}
+                />
             </div>
         </section>
     )
@@ -79,10 +57,9 @@ type InputPropsType = {
     value: number
     incValue: () => void
     decValue: () => void
-    onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<InputPropsType> = ({value, incValue, decValue, onChangeValue}) => {
+const Input: React.FC<InputPropsType> = ({value, incValue, decValue}) => {
 
     return (
         <div className={local.input}>
@@ -93,7 +70,6 @@ const Input: React.FC<InputPropsType> = ({value, incValue, decValue, onChangeVal
                 -
             </div>
             <input value={value}
-                   onChange={onChangeValue}
             />
             <div className={local.inc}
                  tabIndex={0}
