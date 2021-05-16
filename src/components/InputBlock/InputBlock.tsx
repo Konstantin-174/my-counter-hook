@@ -1,26 +1,19 @@
 import local from './InputBlock.module.scss';
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import CounterButton from '../Counter/CounterButton/CounterButton';
 
 type InputBlockPropsType = {
-    maxValue: number
-    decMaxValue: () => void
-    incMaxValue: () => void
-    startValue: number
-    decStartValue: () => void
-    incStartValue: () => void
-    setDisplayValue: (value: number) => void
+
+    changeHandler: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const InputBlock: React.FC<InputBlockPropsType> = ({maxValue,
-                                                              decMaxValue,
-                                                              incMaxValue,
-                                                              startValue,
-                                                              decStartValue,
-                                                              incStartValue,
-                                                              setDisplayValue}) => {
+export const InputBlock: React.FC<InputBlockPropsType> = ({
+                                                              changeHandler
+                                                          }) => {
 
-    const setBtn = () => setDisplayValue(startValue)
+    const setBtn = () => {
+        alert('WTF!?')
+    }
 
     return (
         <section className={local.inputBlockWrap}>
@@ -29,18 +22,14 @@ export const InputBlock: React.FC<InputBlockPropsType> = ({maxValue,
                     <div className={local.inputTitle}>
                         max value
                     </div>
-                    <Input value={maxValue}
-                           decValue={decMaxValue}
-                           incValue={incMaxValue}
+                    <Input changeHandler={changeHandler}
                     />
                 </div>
                 <div className={local.inputItem}>
                     <div className={local.inputTitle}>
                         start value
                     </div>
-                    <Input value={startValue}
-                           decValue={decStartValue}
-                           incValue={incStartValue}
+                    <Input changeHandler={changeHandler}
                     />
                 </div>
             </div>
@@ -54,29 +43,17 @@ export const InputBlock: React.FC<InputBlockPropsType> = ({maxValue,
 }
 
 type InputPropsType = {
-    value: number
-    incValue: () => void
-    decValue: () => void
+    changeHandler: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<InputPropsType> = ({value, incValue, decValue}) => {
+const Input: React.FC<InputPropsType> = ({changeHandler}) => {
 
     return (
         <div className={local.input}>
-            <div className={local.dec}
-                 tabIndex={0}
-                 onClick={decValue}
-            >
-                -
-            </div>
-            <input value={value}
+            <input type="number"
+                   placeholder="Your value"
+                   onChange={changeHandler}
             />
-            <div className={local.inc}
-                 tabIndex={0}
-                 onClick={incValue}
-            >
-                +
-            </div>
         </div>
     )
 }

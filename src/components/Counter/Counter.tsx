@@ -4,35 +4,33 @@ import CounterButton from './CounterButton/CounterButton';
 import local from './Counter.module.scss';
 
 type CounterPropsType = {
-    displayValue: number
-    maxValue: number
 }
 
-const Counter: React.FC<CounterPropsType> = ({displayValue, maxValue}) => {
+const Counter: React.FC<CounterPropsType> = () => {
 
-    let [count, setCount] = useState<number>(displayValue)
+    let [count, setCount] = useState<number>(0)
 
     const incCount = () => setCount(count + 1)
 
     const resetCount = () => {
-         if (count > displayValue) {
-             setCount(count = displayValue)
+         if (count > 0) {
+             setCount(count = 0)
          }
     }
 
     return (
         <section className={local.counter}>
-            <CounterInput maxValue={maxValue}
+            <CounterInput
                           count={count}
             />
             <div className={local.btns}>
                 <CounterButton title="inc"
                                onClick={incCount}
-                               disabled={count >= maxValue}
+                               disabled={count >= 5}
                 />
                 <CounterButton title="reset"
                                onClick={resetCount}
-                               disabled={count === displayValue}
+                               disabled={count === 0}
                 />
             </div>
         </section>
