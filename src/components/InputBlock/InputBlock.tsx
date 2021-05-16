@@ -3,17 +3,20 @@ import React, {ChangeEvent} from 'react';
 import CounterButton from '../Counter/CounterButton/CounterButton';
 
 type InputBlockPropsType = {
-
-    changeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    setDisplayValue: (value: number) => void
+    maxInputChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    startInputChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    startValue: number
 }
 
 export const InputBlock: React.FC<InputBlockPropsType> = ({
-                                                              changeHandler
+                                                              setDisplayValue,
+                                                              maxInputChangeHandler,
+                                                              startInputChangeHandler,
+                                                              startValue
                                                           }) => {
 
-    const setBtn = () => {
-        alert('WTF!?')
-    }
+    const setBtn = () => setDisplayValue(startValue)
 
     return (
         <section className={local.inputBlockWrap}>
@@ -22,14 +25,14 @@ export const InputBlock: React.FC<InputBlockPropsType> = ({
                     <div className={local.inputTitle}>
                         max value
                     </div>
-                    <Input changeHandler={changeHandler}
+                    <Input changeHandler={maxInputChangeHandler}
                     />
                 </div>
                 <div className={local.inputItem}>
                     <div className={local.inputTitle}>
                         start value
                     </div>
-                    <Input changeHandler={changeHandler}
+                    <Input changeHandler={startInputChangeHandler}
                     />
                 </div>
             </div>
